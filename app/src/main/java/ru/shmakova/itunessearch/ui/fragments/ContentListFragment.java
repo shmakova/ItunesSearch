@@ -40,6 +40,8 @@ public class ContentListFragment
     RecyclerView recyclerView;
     @BindView(R.id.floating_search_view)
     FloatingSearchView floatingSearchView;
+    @BindView(R.id.empty_favorites)
+    View emptyView;
 
     @Inject
     ErrorMessageDeterminer errorMessageDeterminer;
@@ -130,13 +132,7 @@ public class ContentListFragment
     public void showLoading(boolean pullToRefresh) {
         super.showLoading(pullToRefresh);
         if (pullToRefresh && !contentView.isRefreshing()) {
-            // Workaround for measure bug: https://code.google.com/p/android/issues/detail?id=77712
-            contentView.post(new Runnable() {
-                @Override
-                public void run() {
-                    contentView.setRefreshing(true);
-                }
-            });
+            contentView.post(() -> contentView.setRefreshing(true));
         }
     }
 
@@ -149,4 +145,18 @@ public class ContentListFragment
     public void onSearchAction(String currentQuery) {
         presenter.loadContent(currentQuery, true);
     }
+
+    @Override
+    public void showEmptyView() {
+        contentView.setVisibility(View.GONE);
+        emptyView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideEmptyView() {
+        contentView.setVisibility(View.VISIBLE);
+        emptyView.setVisibility(View.GONE);
+    }
+
+
 }

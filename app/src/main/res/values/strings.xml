@@ -3,4 +3,5 @@
     <string name="error_text">Нажмите, чтобы повторить</string>
     <string name="search_hint">Поиск артистов в Itunes</string>
     <string name="cover">Обложка</string>
+    <string name="empty_text">Ничего не найдено. Начните поиск</string>
 </resources>

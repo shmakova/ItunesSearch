@@ -1,30 +1,16 @@
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/content_wrapper"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.arlib.floatingsearchview.FloatingSearchView
-        android:id="@+id/floating_search_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:floatingSearch_close_search_on_keyboard_dismiss="false"
-        app:floatingSearch_dimBackground="true"
-        app:floatingSearch_dismissOnOutsideTouch="true"
-        app:floatingSearch_hintTextColor="@color/light_grey"
-        app:floatingSearch_leftActionColor="@color/light_grey"
-        app:floatingSearch_leftActionMode="showSearch"
-        app:floatingSearch_searchBarMarginLeft="8dp"
-        app:floatingSearch_searchBarMarginRight="8dp"
-        app:floatingSearch_searchBarMarginTop="8dp"
-        app:floatingSearch_searchHint="@string/search_hint"
-        app:floatingSearch_showSearchKey="true"/>
+    <include layout="@layout/empty_view"/>
 
     <FrameLayout
         android:id="@+id/content_list"
         android:layout_width="match_parent"
+        android:layout_marginTop="64dp"
         android:layout_height="match_parent">
 
         <include layout="@layout/loading_view"/>
@@ -45,4 +31,20 @@
 
     </FrameLayout>
 
-</LinearLayout>
+    <com.arlib.floatingsearchview.FloatingSearchView
+        android:id="@+id/floating_search_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:floatingSearch_close_search_on_keyboard_dismiss="false"
+        app:floatingSearch_dimBackground="true"
+        app:floatingSearch_dismissOnOutsideTouch="true"
+        app:floatingSearch_hintTextColor="@color/light_grey"
+        app:floatingSearch_leftActionColor="@color/light_grey"
+        app:floatingSearch_leftActionMode="showSearch"
+        app:floatingSearch_searchBarMarginLeft="8dp"
+        app:floatingSearch_searchBarMarginRight="8dp"
+        app:floatingSearch_searchBarMarginTop="8dp"
+        app:floatingSearch_searchHint="@string/search_hint"
+        app:floatingSearch_showSearchKey="true"/>
+
+</RelativeLayout>

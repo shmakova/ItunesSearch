@@ -3,6 +3,7 @@ package ru.shmakova.itunessearch.di.modules;
 import android.app.Application;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.File;
 
@@ -16,6 +17,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import ru.shmakova.itunessearch.data.itunes.AutoValueGsonTypeAdapterFactory;
 import ru.shmakova.itunessearch.data.itunes.interceptors.CacheInterceptor;
 import ru.shmakova.itunessearch.data.itunes.ItunesAppleService;
 import ru.shmakova.itunessearch.data.itunes.interceptors.OfflineCacheInterceptor;
@@ -50,9 +52,9 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    Retrofit provideRetrofit(OkHttpClient okHttpClient) {
+    Retrofit provideRetrofit(OkHttpClient okHttpClient, Gson gson) {
         return new Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .baseUrl(ItunesAppleService.BASE_URL)
                 .client(okHttpClient)
@@ -85,5 +87,13 @@ public class NetworkModule {
         File httpCacheDirectory = new File(application.getCacheDir(), "http-cache");
         int cacheSize = 10 * 1024 * 1024;
         return new Cache(httpCacheDirectory, cacheSize);
+    }
+
+    @Provides
+    @Singleton
+    Gson provideGson() {
+        return new GsonBuilder()
+                .registerTypeAdapterFactory(new AutoValueGsonTypeAdapterFactory())
+                .create();
     }
 }

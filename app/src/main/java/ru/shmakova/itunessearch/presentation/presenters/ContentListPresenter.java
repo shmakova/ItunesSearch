@@ -36,4 +36,16 @@ public class ContentListPresenter extends BaseRxPresenter<ContentListView, List<
     public void loadContent(boolean pullToRefresh) {
         loadContent(currentTerm, pullToRefresh);
     }
+
+    protected void onNext(List<Content> data) {
+        if (isViewAttached()) {
+            if (data.isEmpty()) {
+                getView().showEmptyView();
+            } else {
+                getView().hideEmptyView();
+            }
+
+            getView().setData(data);
+        }
+    }
 }

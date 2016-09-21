@@ -28,7 +28,8 @@ public class ContentListAdapter extends SupportAnnotatedAdapter implements Conte
             views = {
                     @ViewField(id = R.id.cover_small, name = "cover_small", type = ImageView.class),
                     @ViewField(id = R.id.name, name = "name", type = TextView.class),
-                    @ViewField(id = R.id.album, name = "album", type = TextView.class)
+                    @ViewField(id = R.id.album, name = "album", type = TextView.class),
+                    @ViewField(id = R.id.track, name = "track", type = TextView.class)
             }
     )
     public final int row = 0;
@@ -57,6 +58,7 @@ public class ContentListAdapter extends SupportAnnotatedAdapter implements Conte
 
         vh.name.setText(content.artistName());
         vh.album.setText(content.collectionName());
+        vh.track.setText(content.trackName());
 
         Glide.with(vh.cover_small.getContext())
                 .load(content.artworkUrl100())

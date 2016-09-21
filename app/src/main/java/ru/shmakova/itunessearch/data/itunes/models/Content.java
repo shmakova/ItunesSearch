@@ -1,6 +1,8 @@
 package ru.shmakova.itunessearch.data.itunes.models;
 
 import com.google.auto.value.AutoValue;
+import com.google.gson.Gson;
+import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -104,6 +106,10 @@ public abstract class Content {
 
     public static Builder builder() {
         return new AutoValue_Content.Builder();
+    }
+
+    public static TypeAdapter<Content> typeAdapter(Gson gson) {
+        return new AutoValue_Content.GsonTypeAdapter(gson);
     }
 
     @AutoValue.Builder

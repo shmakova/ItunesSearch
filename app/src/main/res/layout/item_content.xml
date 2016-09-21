@@ -23,8 +23,15 @@
         android:id="@+id/album"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/name"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/name"
+        android:layout_toRightOf="@+id/cover_small"
+        android:textColor="@color/grey"/>
+
+    <TextView
+        android:id="@+id/track"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/album"
         android:layout_toRightOf="@+id/cover_small"
         android:textColor="@color/grey"/>
 </RelativeLayout>
